@@ -94,6 +94,7 @@ object Form8: TForm8
       'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\LENOVO\Doc' +
       'uments\PERKULIAHAN\Pemograman Visual 2\Praktik 1\jadwal_db.mdb;P' +
       'ersist Security Info=False'
+    LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 8

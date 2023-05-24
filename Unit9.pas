@@ -52,7 +52,7 @@ var
 implementation
 
 uses
-  Unit8, ADODB, DB;
+  Unit8;
 
 {$R *.dfm}
 
@@ -81,8 +81,48 @@ end;
 
 procedure TForm9.Button1Click(Sender: TObject);
 begin
-adotable1.insert;
 
+if (Edit1.Text = '') or (Edit1.Text = '00:00') or (Edit2.Text = '') or (Edit2.Text = '00:00') then
+  begin
+    ShowMessage('Data Belum Diisi Dengan Benar');
+  end
+  else if (ComboBox1.Text = '') or (ComboBox1.Text = '--Pilih Hari--') then
+  begin
+    ShowMessage('Data Belum Diisi Dengan Benar');
+  end
+  else if (Edit3.Text = '') or (Edit3.Text = '-') or (Edit4.Text = '') or (Edit4.Text = '-') then
+  begin
+    ShowMessage('Inputan Ruangan atau Matakuliah Belum Diisi');
+  end
+  else if (Edit5.Text = '') or (Edit5.Text = '-') or (Edit6.Text = '') or (Edit6.Text = '0') then
+  begin
+    ShowMessage('Inputan Kelas atau Total Hadir Masih Belum Selesai');
+  end
+  else if (Edit1.Text= Form8.qry1.Fields[1].AsString) and (ComboBox1.Text=Form8.qry1.Fields[2].AsString) then
+  begin
+    ShowMessage('Data Tidak Ada Perubahan');
+  end
+  else
+  begin
+adotable1.insert;
+adotable1.FieldByName('jam_mulai').AsString := Edit1.Text;
+adotable1.FieldByName('jam_akhir').AsString := Edit2.Text;
+adotable1.FieldByName('hari').AsString := ComboBox1.Text;
+adotable1.FieldByName('tanggal').AsDateTime := DateTimePicker1.Date;
+adotable1.FieldByName('ruang').AsString :=  Edit3.Text;
+adotable1.FieldByName('matkul').AsString :=  Edit4.Text;
+adotable1.FieldByName('kelas').AsString :=  Edit5.Text;
+adotable1.FieldByName('kehadiran_total').AsString :=  Edit6.Text;
+adotable1.Post;
+
+Edit1.Clear;
+Edit2.Clear;
+ComboBox1.Clear;
+Edit3.Clear;
+Edit4.Clear;
+Edit5.Clear;
+Edit6.Clear;
+end;
 end;
 
 procedure TForm9.FormShow(Sender: TObject);
@@ -135,18 +175,17 @@ begin
   end
   else
   begin
-    with Form8.qry1 do
-    begin
-      SQL.Clear;
-      SQL.Add('UPDATE jadwal_table SET jam_mulai = "' + Edit1.Text + '", jam_akhir = "' + Edit2.Text + '", ' +'hari = "' + ComboBox1.Text + '", tanggal = "' + FormatDateTime('dd-mm-yyyy', DateTimePicker1.Date) + '", ' +'ruang = "' + Edit3.Text + '", matkul = "' + Edit4.Text + '", kelas = "' + Edit5.Text + '", ' +'kehadiran_total = "' + Edit6.Text + '" WHERE No = ' + updt);
-      ExecSQL;
-
-      SQL.Clear;
-      SQL.Add('SELECT * FROM jadwal_table');
-      Open;
-      ShowMessage('Data Berhasil Di Update');
-      bersih;
-    end;
+    ADOTable1.Edit;
+    ADOTable1.FieldByName('jam_mulai').AsString := Edit1.Text;
+    ADOTable1.FieldByName('jam_akhir').AsString := Edit2.Text;
+    ADOTable1.FieldByName('hari').AsString := ComboBox1.Text;
+    ADOTable1.FieldByName('tanggal').AsDateTime := DateTimePicker1.Date;
+    ADOTable1.FieldByName('ruang').AsString := Edit3.Text;
+    ADOTable1.FieldByName('matkul').AsString := Edit4.Text;
+    ADOTable1.FieldByName('kelas').AsString := Edit5.Text;
+    ADOTable1.FieldByName('kehadiran_total').AsString := Edit6.Text;
+    ADOTable1.Post;
+    ShowMessage('Data Telah Diedit');
   end;
 end;
 
@@ -176,18 +215,7 @@ if (Edit1.Text = '') or (Edit1.Text = '00:00') or (Edit2.Text = '') or (Edit2.Te
   begin
   if MessageDlg('Apakah Yakin Menghapus Data ini?',mtWarning,[mbYes,mbNo],0)=mryes then
   Begin
-      with Form8.qry1 do
-      begin
-          SQL.Clear;
-          SQL.Add('DELETE FROM jadwal_table WHERE No = ' + updt);
-          ExecSQL;
-
-          SQL.Clear;
-          SQL.Add('SELECT * FROM jadwal_table');
-          Open;
-          ShowMessage('Data Berhasil Di Hapus');
-          bersih;
-      end;
+      AdoTable1.Delete;
   end else
   begin
       ShowMessage('Data Batal Di Hapus');
