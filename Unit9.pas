@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, ComCtrls, StdCtrls;
+  Dialogs, Grids, DBGrids, ComCtrls, StdCtrls, DB, ADODB;
 
 type
   TForm9 = class(TForm)
@@ -30,6 +30,8 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    DataSource1: TDataSource;
+    ADOTable1: TADOTable;
     procedure Button1Click(Sender: TObject);
     procedure bersih;
     procedure FormShow(Sender: TObject);
@@ -80,6 +82,7 @@ end;
 procedure TForm9.Button1Click(Sender: TObject);
 begin
 adotable1.insert;
+
 end;
 
 procedure TForm9.FormShow(Sender: TObject);

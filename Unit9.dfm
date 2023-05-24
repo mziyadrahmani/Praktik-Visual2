@@ -1,7 +1,7 @@
 object Form9: TForm9
-  Left = 192
-  Top = 125
-  Width = 754
+  Left = 426
+  Top = 270
+  Width = 760
   Height = 484
   Caption = 'Form9'
   Color = clBtnFace
@@ -187,7 +187,7 @@ object Form9: TForm9
     Top = 280
     Width = 721
     Height = 161
-    DataSource = Form8.ds1
+    DataSource = DataSource1
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -241,5 +241,18 @@ object Form9: TForm9
         FieldName = 'kehadiran_total'
         Visible = True
       end>
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOTable1
+    Left = 401
+    Top = 112
+  end
+  object ADOTable1: TADOTable
+    Active = True
+    Connection = Form8.con1
+    CursorType = ctStatic
+    TableName = 'jadwal_table'
+    Left = 361
+    Top = 112
   end
 end
