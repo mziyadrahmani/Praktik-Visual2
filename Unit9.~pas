@@ -175,14 +175,17 @@ begin
   end
   else
   begin
-    Edit1.Text := adotable1.FieldByName('jam_mulai').AsString ;
-    Edit2.Text := adotable1.FieldByName('jam_akhir').AsString ;
-    ComboBox1.Text := adotable1.FieldByName('hari').AsString ;
-    DateTimePicker1.Date := adotable1.FieldByName('tanggal').AsDateTime ;
-    Edit3.Text := adotable1.FieldByName('ruang').AsString  ;
-    Edit4.Text := adotable1.FieldByName('matkul').AsString  ;
-    Edit5.Text := adotable1.FieldByName('kelas').AsString  ;
-    Edit6.Text := adotable1.FieldByName('kehadiran_total').AsString  ;
+    ADOTable1.Edit;
+    ADOTable1.FieldByName('jam_mulai').AsString := Edit1.Text;
+    ADOTable1.FieldByName('jam_akhir').AsString := Edit2.Text;
+    ADOTable1.FieldByName('hari').AsString := ComboBox1.Text;
+    ADOTable1.FieldByName('tanggal').AsDateTime := DateTimePicker1.Date;
+    ADOTable1.FieldByName('ruang').AsString := Edit3.Text;
+    ADOTable1.FieldByName('matkul').AsString := Edit4.Text;
+    ADOTable1.FieldByName('kelas').AsString := Edit5.Text;
+    ADOTable1.FieldByName('kehadiran_total').AsString := Edit6.Text;
+    ADOTable1.Post;
+    ShowMessage('Data Telah Diedit');
   end;
 end;
 

@@ -134,15 +134,15 @@ procedure TForm9.DBGrid1CellClick(Column: TColumn);
 
 begin
 try
-  updt := Form8.qry1.Fields[0].AsString;
-  Edit1.Text := Form8.qry1.Fields[1].AsString;
-  Edit2.Text := Form8.qry1.Fields[2].AsString;
-  ComboBox1.Text := Form8.qry1.Fields[3].AsString;
-  DateTimePicker1.Date := Form8.qry1.Fields[4].AsDateTime;
-  Edit3.Text := Form8.qry1.Fields[5].AsString;
-  Edit4.Text := Form8.qry1.Fields[6].AsString;
-  Edit5.Text := Form8.qry1.Fields[7].AsString;
-  Edit6.Text := Form8.qry1.Fields[8].AsString;
+  updt := ADOTable1.Fields[0].AsString;
+  Edit1.Text := ADOTable1.Fields[1].AsString;
+  Edit2.Text := ADOTable1.Fields[2].AsString;
+  ComboBox1.Text := ADOTable1.Fields[3].AsString;
+  DateTimePicker1.Date := ADOTable1.Fields[4].AsDateTime;
+  Edit3.Text := ADOTable1.Fields[5].AsString;
+  Edit4.Text := ADOTable1.Fields[6].AsString;
+  Edit5.Text := ADOTable1.Fields[7].AsString;
+  Edit6.Text := ADOTable1.Fields[8].AsString;
   Button1.Enabled := False;
   Button2.Enabled := True;
   Button3.Enabled := True;

@@ -1,6 +1,6 @@
 object Form9: TForm9
-  Left = 426
-  Top = 270
+  Left = 370
+  Top = 208
   Width = 760
   Height = 484
   Caption = 'Form9'
@@ -214,6 +214,7 @@ object Form9: TForm9
       item
         Expanded = False
         FieldName = 'hari'
+        Width = 65
         Visible = True
       end
       item
