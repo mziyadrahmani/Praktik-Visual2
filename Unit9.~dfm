@@ -1,6 +1,6 @@
 object Form9: TForm9
-  Left = 370
-  Top = 208
+  Left = 253
+  Top = 326
   Width = 760
   Height = 484
   Caption = 'Form9'

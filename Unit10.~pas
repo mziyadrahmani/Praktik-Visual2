@@ -1,0 +1,205 @@
+unit Unit10;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ZAbstractConnection, ZConnection, DB, ZAbstractRODataset,
+  ZAbstractDataset, ZDataset, Grids, DBGrids, StdCtrls;
+
+type
+  TForm10 = class(TForm)
+    ZConnection1: TZConnection;
+    ZQuery1: TZQuery;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Edit6: TEdit;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure DBGrid1CellClick(Column: TColumn);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure posisiawal(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form10: TForm10;
+    clickedcell : String;
+implementation
+
+{$R *.dfm}
+
+procedure TForm10.Button1Click(Sender: TObject);
+begin
+Edit1.Clear;
+Edit2.Clear;
+Edit3.Clear;
+Edit4.Clear;
+Edit5.Clear;
+Edit1.Enabled:=True;
+Edit2.Enabled:=True;
+Edit3.Enabled:=True;
+Edit4.Enabled:=True;
+Edit5.Enabled:=True;
+Button1.Enabled:=True;
+Button2.Enabled:=True;
+Button3.Enabled:=True;
+Button4.Enabled:=True;
+Button5.Enabled:=True;
+end;
+
+procedure TForm10.Button2Click(Sender: TObject);
+begin
+if Edit1.Text ='' then
+begin
+ShowMessage('NAMA KUSTOMER TIDAK BOLEH KOSONG!');
+end else
+if Edit2.Text ='' then
+begin
+ShowMessage('No TELEPON TIDAK BOLEH KOSONG!');
+end else
+if Edit3.Text ='' then
+begin
+ShowMessage('alamat TIDAK BOLEH KOSONG!');
+end else
+begin
+//simpan
+end;
+
+ZQuery1.SQL.Clear; //simpan
+ZQuery1.SQL.Add('insert into costumer values(null,"'+Edit1.Text+'","'+Edit2.Text+'","'+Edit3.Text+'","'+Edit4.Text
++'","'+Edit5.Text+'")');
+ZQuery1.ExecSQL ;
+
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('select * from costumer');
+ZQuery1.Open;
+ShowMessage('DATA BARHASIL DISIMPAN!');
+posisiawal;
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('insert into costumer values(null,'''+Edit1.Text+'",'''+Edit2.Text+'",'''+Edit3.Text+'",'''+Edit4.Text+'",'''+Edit5.Text+'")');
+ZQuery1.ExecSQL ;
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('select * from costumer');
+ZQuery1.Open;
+end;
+
+procedure TForm10.Button3Click(Sender: TObject);
+begin
+if (Edit1.Text= '')or (Edit2.Text ='')or(Edit3.Text= '')or (Edit4.Text ='')or (Edit5.Text ='') then
+begin
+ShowMessage('INPUTAN WAJIB DIISI!');
+end else
+if Edit1.Text = ZQuery1.Fields[1].AsString then
+begin
+ShowMessage('DATA TIDAK ADA PERUBAHAN');
+posisiawal;
+end else
+begin
+ShowMessage('DATA BERHASIL DIUPDATE!'); //UPDATE
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('Update costumer set nmcostumer= '''+Edit1.Text+'",telp='''+Edit2.Text+'" where idcostumer='''+id+'''');
+ZQuery1. ExecSQL;
+
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('select * from costumer');
+ZQuery1.Open;
+posisiawal;
+//update costumer set nmcostumer ='TEGUS,S.KOM',telp ='01234567' where idcostumer=14;
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('Update costumer set nmcostumer ='''+Edit1.text+''',telp = '''+Edit2.text+''',alamat = '''+Edit3.text+''',kota = '''+Edit4.text+''',kodepos = '''+Edit5.text+''' where idcostumer= '+clickedcell);
+ZQuery1. ExecSQL;
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('select * from costumer');
+ZQuery1.Open;
+end;
+
+procedure TForm10.DBGrid1CellClick(Column: TColumn);
+begin
+clickedcell := ZQuery1.FieldList[0].AsString;
+Edit1.Text:= ZQuery1.FieldList[1].AsString;
+Edit2.Text:= ZQuery1.FieldList[2].AsString;
+Edit3.Text:= ZQuery1.FieldList[3].AsString;
+Edit4.Text:= ZQuery1.FieldList[4].AsString;
+Edit5.Text:= ZQuery1.FieldList[5].AsString;
+Edit6.Text:= clickedcell;
+end;
+
+procedure TForm10.Button4Click(Sender: TObject);
+begin
+if MessageDlg('APAKAH YAKIN MENGHAPUS DATA INI?',mtWarning,[mbYes,mbNo],0)= mryes then
+begin
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add(' delete from costumer where idcostumer= '+clickedcell);
+ZQuery1. ExecSQL;
+ZQuery1.SQL.Clear;
+ZQuery1.SQL.Add('select * from costumer');
+ZQuery1.Open;
+posisiawal;
+end else
+begin
+ShowMessage('DATA BATAL DIHAPUS');
+posisiawal;
+end;
+
+procedure TForm10.Button5Click(Sender: TObject);
+begin
+
+Edit1.Clear;
+Edit2.Clear;
+Edit3.Clear;
+Edit4.Clear;
+Edit5.Clear;
+Edit1.Enabled:=False;
+Edit2.Enabled:=False;
+Edit3.Enabled:=False;
+Edit4.Enabled:=False;
+Edit5.Enabled:=False;
+
+Button2.Enabled:=False;
+Button3.Enabled:=False;
+Button4.Enabled:=False;
+Button5.Enabled:=False;
+end;
+
+procedure TForm10.FormShow(Sender: TObject);
+begin
+Edit1.Clear;
+Edit2.Clear;
+Edit3.Clear;
+Edit4.Clear;
+Edit5.Clear;
+Edit1.Enabled:=False;
+Edit2.Enabled:=False;
+Edit3.Enabled:=False;
+Edit4.Enabled:=False;
+Edit5.Enabled:=False;
+
+Button2.Enabled:=False;
+Button3.Enabled:=False;
+Button4.Enabled:=False;
+Button5.Enabled:=False;
+end;
+
+end.

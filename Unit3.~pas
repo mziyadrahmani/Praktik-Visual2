@@ -8,10 +8,6 @@ uses
 
 type
   TMain = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
     MainMenu1: TMainMenu;
     PRAKTEK1: TMenuItem;
     PRAKTEK11: TMenuItem;
@@ -21,6 +17,7 @@ type
     ambah1: TMenuItem;
     ContohKondisional1: TMenuItem;
     abelDatabase1: TMenuItem;
+    ZeosTable1: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -31,6 +28,7 @@ type
     procedure ambah1Click(Sender: TObject);
     procedure ContohKondisional1Click(Sender: TObject);
     procedure abelDatabase1Click(Sender: TObject);
+    procedure ZeosTable1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -94,6 +92,11 @@ end;
 procedure TMain.abelDatabase1Click(Sender: TObject);
 begin
 Form8.ShowModal;
+end;
+
+procedure TMain.ZeosTable1Click(Sender: TObject);
+begin
+Form10.ShowModal;
 end;
 
 end.

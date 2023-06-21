@@ -46,6 +46,10 @@ object Main: TMain
         Caption = 'Tabel Database'
         OnClick = abelDatabase1Click
       end
+      object ZeosTable1: TMenuItem
+        Caption = 'Zeos Table'
+        OnClick = ZeosTable1Click
+      end
     end
   end
 end

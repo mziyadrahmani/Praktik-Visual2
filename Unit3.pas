@@ -17,6 +17,7 @@ type
     ambah1: TMenuItem;
     ContohKondisional1: TMenuItem;
     abelDatabase1: TMenuItem;
+    ZeosTable1: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -27,6 +28,7 @@ type
     procedure ambah1Click(Sender: TObject);
     procedure ContohKondisional1Click(Sender: TObject);
     procedure abelDatabase1Click(Sender: TObject);
+    procedure ZeosTable1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,7 +40,7 @@ var
 
 implementation
 
-uses Unit1, Unit2, Unit4, Unit5, Unit6, Unit7, Unit8;
+uses Unit1, Unit2, Unit4, Unit5, Unit6, Unit7, Unit8, Unit10;
 
 {$R *.dfm}
 
@@ -90,6 +92,11 @@ end;
 procedure TMain.abelDatabase1Click(Sender: TObject);
 begin
 Form8.ShowModal;
+end;
+
+procedure TMain.ZeosTable1Click(Sender: TObject);
+begin
+Form10.ShowModal;
 end;
 
 end.

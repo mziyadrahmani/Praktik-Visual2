@@ -15,42 +15,6 @@ object Main: TMain
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Button1: TButton
-    Left = 48
-    Top = 24
-    Width = 233
-    Height = 41
-    Caption = 'Kalkulator'
-    TabOrder = 0
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 48
-    Top = 80
-    Width = 233
-    Height = 41
-    Caption = 'Nilai Mahasiswa'
-    TabOrder = 1
-    OnClick = Button2Click
-  end
-  object Button3: TButton
-    Left = 48
-    Top = 136
-    Width = 233
-    Height = 41
-    Caption = 'Mandiri 3'
-    TabOrder = 2
-    OnClick = Button3Click
-  end
-  object Button4: TButton
-    Left = 48
-    Top = 192
-    Width = 233
-    Height = 41
-    Caption = 'Mandiri 4'
-    TabOrder = 3
-    OnClick = Mandiri31Click
-  end
   object MainMenu1: TMainMenu
     object PRAKTEK1: TMenuItem
       Caption = 'PRAKTEK'
@@ -81,6 +45,10 @@ object Main: TMain
       object abelDatabase1: TMenuItem
         Caption = 'Tabel Database'
         OnClick = abelDatabase1Click
+      end
+      object ZeosTable1: TMenuItem
+        Caption = 'Zeos Table'
+        OnClick = ZeosTable1Click
       end
     end
   end
